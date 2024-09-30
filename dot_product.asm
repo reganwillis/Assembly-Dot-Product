@@ -1,7 +1,9 @@
-# calculate the dot product of two vectors
+# MIPS program to calculate the dot product of two vectors.
+# Description:  Two vectors are hardcoded in, the dot product is calculated,
+#               and the result is diaplayed in decimal.
+# Tested using MARS 4.5 simulator with inputs: TODO
+# Bugs and Concerns:    Input vectors must be of the same length.
 
-# NOTE: vectors should be hardcoded
-# NOTE: vectors must be equal lengths
 a = [2, 2, 3, 4, 5]  # TODO: store in $s1
 b = [3, 7, 8, 9, 10]  # TODO: store in $s2
 addi $t0, $zero, 5  # vector length
