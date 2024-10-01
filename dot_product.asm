@@ -1,7 +1,8 @@
 # MIPS program to calculate the dot product of two vectors.
 # Description:  Two vectors are hardcoded in, the dot product is calculated,
 #               and the result is diaplayed in decimal.
-# Tested using MARS 4.5 simulator with inputs: TODO
+# Tested using MARS 4.5 simulator with inputs:
+#   * A = [2, 2, 3, 4, 5], B = [3, 7, 8, 9, 10]
 # Bugs and Concerns:
 #   Input vectors must be of the same length.
 
@@ -36,7 +37,7 @@ DOT_PRODUCT_LOOP:
 		add $t6, $t6, $s1
 
 		addi $t5, $t5, 1  # ++j
-		blt $s2, $t5, MULTIPLIER_LOOP  # b[i] < j
+		blt $t5, $s2, MULTIPLIER_LOOP  # j < b[i]
 
 	add $t1, $t1, $t6  # add product to sum
 
@@ -45,37 +46,3 @@ DOT_PRODUCT_LOOP:
 	add $t4, $t4, $t7  # address + 4
 
 	blt $t2, $t0, DOT_PRODUCT_LOOP  # i < vector length
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
