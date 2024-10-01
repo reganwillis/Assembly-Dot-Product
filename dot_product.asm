@@ -2,29 +2,80 @@
 # Description:  Two vectors are hardcoded in, the dot product is calculated,
 #               and the result is diaplayed in decimal.
 # Tested using MARS 4.5 simulator with inputs: TODO
-# Bugs and Concerns:    Input vectors must be of the same length.
+# Bugs and Concerns:
+#   Input vectors must be of the same length.
 
-a = [2, 2, 3, 4, 5]  # TODO: store in $s1
-b = [3, 7, 8, 9, 10]  # TODO: store in $s2
-addi $t0, $zero, 5  # vector length
+.data
+
+A: .word 2, 2, 3, 4, 5
+B: .word 3, 7, 8, 9, 10
+n: .word 5
+word_length: .word 4
+
+.text
+lw $t0, n  # vector length
 
 add $t1, $zero, $zero  # sum: holds the dot product
 add $t2, $zero, $zero  # i: dot product loop iterator
+lw $t7, word_length
+
+# addresses pointers of vectors A, B
+la $t3, A
+la $t4, B
 
 # loop over every index of the vectors
+DOT_PRODUCT_LOOP:
+	lw $s1, 0($t3)
+	lw $s2, 0($t4)
 
-# load vectors at the index
-# TODO: compute offset
-lw $t3, $t2($s1)  # a[i] 2
-lw $t4, $t2($s2)  # b[i] 3
+	# multiply vectors at i
+	li $t5, 0  # j: multiplier loop iterator
+	li $t6, 0  # product
 
-# multiply vectors at i
-add $t5, $zero, $zero  # j: multiplier loop iterator
-add $t6, $zero, $zero  # product
-add $t6, $t6, $t3
-addi $t5, $t5, 1  # ++j
-blt $t4, $t5, L22  # b[i] < j
+	MULTIPLIER_LOOP:
+		add $t6, $t6, $s1
 
-add $t1, $t1, $t6  # add product to sum
-addi $t2, $t2, 1  # ++i
-blt $t2, $t0, L26  # i < vector length
+		addi $t5, $t5, 1  # ++j
+		blt $s2, $t5, MULTIPLIER_LOOP  # b[i] < j
+
+	add $t1, $t1, $t6  # add product to sum
+
+	addi $t2, $t2, 1  # ++i
+	add $t3, $t3, $t7  # address + 4
+	add $t4, $t4, $t7  # address + 4
+
+	blt $t2, $t0, DOT_PRODUCT_LOOP  # i < vector length
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
