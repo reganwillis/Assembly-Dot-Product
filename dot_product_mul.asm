@@ -39,14 +39,7 @@ DOT_PRODUCT_LOOP:
 	lw $s2, 0($t4)
 
 	# multiply vectors at i
-	li $t5, 0  # j: multiplier loop iterator
-	li $t6, 0  # product
-
-	MULTIPLIER_LOOP:
-		add $t6, $t6, $s1
-
-		addi $t5, $t5, 1  # ++j
-		blt $t5, $s2, MULTIPLIER_LOOP  # j < b[i]
+    mul $t6, $s1, $s2
 
 	add $t1, $t1, $t6  # add product to sum
 
